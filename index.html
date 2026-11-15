@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>JURIDIA — CRM jurídico con IA</title>
+<meta name="description" content="JURIDIA: el CRM jurídico con inteligencia artificial para despachos. Expedientes, plazos, copiloto IA, jurisprudencia del TSJ, contratos y facturación en un solo lugar. Únete a la lista de espera." />
+<meta property="og:title" content="JURIDIA — CRM jurídico con IA" />
+<meta property="og:description" content="Expedientes, plazos, copiloto IA y jurisprudencia del TSJ en un solo lugar. Acceso anticipado para despachos." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "JURIDIA",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "CRM jurídico con inteligencia artificial para despachos de abogados.",
+  "inLanguage": "es",
+  "publisher": { "@type": "Organization", "name": "Herrera y Asociados" }
+}
+</script>
+<style>
+  /* ============ TOKENS (ajusta aquí para calcar tu web) ============ */
+  :root {
+    --deep: #0e1a2b;            /* bg-deep */
+    --deep-fg: #f4f1ea;         /* text-deep-foreground */
+    --accent: #c8a45c;          /* accent (dorado) */
+    --accent-fg: #0e1a2b;
+    --petrol: #1f5c66;          /* text-petrol */
+    --primary: #1b3350;         /* text-primary */
+    --bg: #fbfaf7;
+    --fg: #131b26;
+    --muted: #f1eee7;           /* bg-muted */
+    --muted-fg: #5d6673;
+    --border: #e2ddd2;
+    --danger: #c0533f;
+    --warn: #d08a2e;
+    --ok: #3f8f6a;
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01em; margin: 0; }
+  p { margin: 0; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .container-x { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 640px) { .container-x { padding: 0 32px; } }
+  .eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; }
+  .text-accent { color: var(--accent); }
+  .text-petrol { color: var(--petrol); }
+  .text-muted { color: var(--muted-fg); }
+  .section { padding: 96px 0; }
+  @media (max-width: 640px) { .section { padding: 72px 0; } }
+
+  .btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 12px 24px; font-size: 0.875rem; font-weight: 600; transition: filter .2s, border-color .2s, color .2s, background .2s; cursor: pointer; border: 0; font-family: inherit; }
+  .btn-accent { background: var(--accent); color: var(--accent-fg); }
+  .btn-accent:hover { filter: brightness(1.1); }
+  .btn-ghost { border: 1px solid rgba(244,241,234,.3); color: var(--deep-fg); background: transparent; }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .link { font-size: .875rem; font-weight: 600; color: var(--primary); }
+  .link:hover { text-decoration: underline; }
+
+  /* ============ NAV ============ */
+  .nav { position: absolute; inset: 0 0 auto 0; z-index: 20; }
+  .nav .container-x { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .brand { font-family: var(--serif); font-size: 1.5rem; letter-spacing: .08em; color: var(--deep-fg); }
+  .brand span { color: var(--accent); }
+  .nav-links { display: none; gap: 32px; font-size: .875rem; color: rgba(244,241,234,.75); }
+  .nav-links a:hover { color: var(--accent); }
+  @media (min-width: 900px) { .nav-links { display: flex; } }
+  .nav .btn { padding: 9px 18px; }
+
+  /* ============ HERO ============ */
+  .hero { position: relative; isolation: isolate; overflow: hidden; background: var(--deep); color: var(--deep-fg); }
+  .hero::before { content: ""; position: absolute; inset: 0; z-index: -2;
+    background:
+      radial-gradient(60% 60% at 85% 30%, rgba(31,92,102,.55), transparent 70%),
+      radial-gradient(40% 50% at 10% 90%, rgba(200,164,92,.12), transparent 70%); }
+  .hero::after { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .07;
+    background-image: linear-gradient(rgba(244,241,234,1) 1px, transparent 1px), linear-gradient(90deg, rgba(244,241,234,1) 1px, transparent 1px);
+    background-size: 64px 64px; mask-image: linear-gradient(to bottom, black, transparent 85%); -webkit-mask-image: linear-gradient(to bottom, black, transparent 85%); }
+  .hero-grid { display: grid; gap: 56px; align-items: center; min-height: 88vh; padding: 128px 0 64px; }
+  @media (min-width: 1024px) { .hero-grid { grid-template-columns: 6fr 6fr; padding: 140px 0 96px; } }
+  .hero h1 { margin-top: 24px; font-size: 2.6rem; line-height: 1.04; }
+  @media (min-width: 640px) { .hero h1 { font-size: 3.6rem; } }
+  @media (min-width: 1280px) { .hero h1 { font-size: 4.3rem; } }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub { margin-top: 24px; max-width: 34rem; font-size: 1.125rem; color: rgba(244,241,234,.8); }
+  .hero-ctas { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero-note { margin-top: 20px; font-size: .8rem; color: rgba(244,241,234,.55); }
+  .pillars { border-top: 1px solid rgba(244,241,234,.1); }
+  .pillars p { padding: 20px 0; color: rgba(244,241,234,.6); }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .animate-rise { animation: rise .9s cubic-bezier(.2,.7,.2,1) both; }
+  .delay { animation-delay: .2s; }
+  @media (prefers-reduced-motion: reduce) { .animate-rise { animation: none; } html { scroll-behavior: auto; } }
+
+  /* ============ APP MOCKUP ============ */
+  .mock { position: relative; border-radius: 14px; background: #f7f5f0; color: var(--fg); box-shadow: 0 40px 80px -20px rgba(0,0,0,.6), 0 0 0 1px rgba(244,241,234,.08); overflow: hidden; font-size: 12px; line-height: 1.4; }
+  .mock-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #ebe7de; border-bottom: 1px solid var(--border); }
+  .mock-bar i { width: 10px; height: 10px; border-radius: 50%; background: #d3cdc0; }
+  .mock-bar .url { margin-left: 12px; flex: 1; max-width: 240px; background: #fff; border-radius: 6px; padding: 3px 10px; color: var(--muted-fg); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mock-body { display: grid; grid-template-columns: 132px 1fr; min-height: 360px; }
+  .mock-side { background: var(--deep); color: rgba(244,241,234,.7); padding: 14px 10px; display: flex; flex-direction: column; gap: 2px; }
+  .mock-side b { font-family: var(--serif); font-weight: 500; letter-spacing: .08em; color: var(--deep-fg); font-size: 14px; padding: 0 8px 12px; }
+  .mock-side b span { color: var(--accent); }
+  .mock-side div { padding: 6px 8px; border-radius: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mock-side .on { background: rgba(200,164,92,.16); color: var(--accent); }
+  .mock-main { padding: 16px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+  .mock-h { font-family: var(--serif); font-size: 18px; }
+  .mock-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .kpi { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; }
+  .kpi small { color: var(--muted-fg); font-size: 10px; display: block; }
+  .kpi strong { font-family: var(--serif); font-weight: 500; font-size: 20px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+  .card-t { font-weight: 600; font-size: 11px; color: var(--muted-fg); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
+  .row { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-top: 1px solid #f0ece4; }
+  .row:first-of-type { border-top: 0; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .row .grow { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .row .date { color: var(--muted-fg); font-size: 11px; white-space: nowrap; }
+  .chat { display: flex; flex-direction: column; gap: 6px; }
+  .bubble { border-radius: 10px; padding: 7px 10px; max-width: 92%; }
+  .bubble.me { align-self: flex-end; background: var(--primary); color: #fff; }
+  .bubble.ai { background: #f3f0e9; }
+  .src { display: inline-block; margin-top: 4px; font-size: 10px; padding: 1px 6px; border-radius: 4px; background: rgba(63,143,106,.12); color: var(--ok); font-weight: 600; }
+  .inf { background: rgba(208,138,46,.14); color: #9a6418; }
+  .mock-float { position: absolute; right: -10px; bottom: 28px; background: #fff; color: var(--fg); border-radius: 10px; padding: 10px 12px; font-size: 11.5px; box-shadow: 0 20px 40px -10px rgba(0,0,0,.45); border-left: 3px solid var(--accent); max-width: 220px; display: none; }
+  @media (min-width: 1024px) { .mock-wrap { position: relative; padding-right: 10px; } .mock-float { display: block; } }
+  @media (max-width: 520px) { .mock-body { grid-template-columns: 1fr; } .mock-side { display: none; } .mock-kpis .kpi:nth-child(3) { display: none; } .mock-kpis { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ============ INTRO ============ */
+  .intro { display: grid; gap: 40px; }
+  @media (min-width: 1024px) { .intro { grid-template-columns: 3fr 9fr; } }
+  .intro h2 { max-width: 48rem; font-size: 2.25rem; line-height: 1.15; }
+  @media (min-width: 768px) { .intro h2 { font-size: 3rem; } }
+  .two-col { margin-top: 32px; display: grid; gap: 24px; color: var(--muted-fg); }
+  @media (min-width: 768px) { .two-col { grid-template-columns: 1fr 1fr; } }
+
+  /* ============ FEATURES ============ */
+  .bg-muted { background: rgba(241,238,231,.6); }
+  .head-row { display: flex; flex-direction: column; gap: 24px; justify-content: space-between; }
+  @media (min-width: 768px) { .head-row { flex-direction: row; align-items: flex-end; } }
+  .h2 { font-size: 2.25rem; line-height: 1.12; }
+  @media (min-width: 768px) { .h2 { font-size: 3rem; } }
+  .features { margin-top: 48px; display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  @media (min-width: 640px) { .features { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .features { grid-template-columns: repeat(4, 1fr); } }
+  .feat { background: var(--bg); padding: 32px 28px; display: flex; flex-direction: column; gap: 12px; transition: background .25s; }
+  .feat:hover { background: #fff; }
+  .feat .num { font-family: var(--serif); color: var(--accent); font-size: .95rem; }
+  .feat h3 { font-size: 1.4rem; line-height: 1.2; }
+  .feat p { color: var(--muted-fg); font-size: .925rem; }
+
+  /* ============ PRINCIPLE ============ */
+  .principle { display: grid; gap: 48px; }
+  @media (min-width: 1024px) { .principle { grid-template-columns: 1fr 1fr; align-items: center; } }
+  .compare { display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .compare > div { background: var(--bg); padding: 28px; }
+  .tag { display: inline-block; font-size: .7rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
+  .tag-ok { background: rgba(63,143,106,.12); color: var(--ok); }
+  .tag-warn { background: rgba(208,138,46,.14); color: #9a6418; }
+  .compare blockquote { margin: 14px 0 0; font-family: var(--serif); font-size: 1.2rem; line-height: 1.4; }
+  .compare cite { display: block; margin-top: 10px; font-style: normal; font-size: .8rem; color: var(--muted-fg); }
+  .checks { margin: 32px 0 0; padding: 0; list-style: none; display: grid; gap: 1px; background: var(--border); }
+  .checks li { background: var(--bg); padding: 16px 0; display: flex; gap: 14px; }
+  .checks li::before { content: "—"; color: var(--accent); font-family: var(--serif); }
+
+  /* ============ SPLIT ============ */
+  .split { display: grid; }
+  @media (min-width: 768px) { .split { grid-template-columns: 1fr 1fr; } }
+  .panel { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; min-height: 28rem; padding: 32px; background: var(--deep); color: var(--deep-fg); }
+  @media (min-width: 768px) { .panel { padding: 48px; } }
+  .panel .bg { position: absolute; inset: 0; z-index: -1; transition: transform .7s; }
+  .panel:hover .bg { transform: scale(1.03); }
+  .panel h2 { margin-top: 16px; max-width: 28rem; font-size: 1.9rem; line-height: 1.15; }
+  @media (min-width: 768px) { .panel h2 { font-size: 2.25rem; } }
+  .panel p.t { margin-top: 12px; max-width: 28rem; color: rgba(244,241,234,.75); }
+  .bg-a { background:
+      linear-gradient(to top, var(--deep) 10%, rgba(14,26,43,.6) 55%, transparent),
+      repeating-linear-gradient(0deg, rgba(200,164,92,.08) 0 1px, transparent 1px 28px),
+      radial-gradient(70% 70% at 70% 20%, #2a5a74, var(--deep)); }
+  .bg-b { background:
+      linear-gradient(to top, var(--deep) 10%, rgba(14,26,43,.6) 55%, transparent),
+      repeating-linear-gradient(90deg, rgba(244,241,234,.05) 0 1px, transparent 1px 22px),
+      radial-gradient(70% 70% at 30% 20%, #1f5c66, var(--deep)); }
+  .glyph { position: absolute; top: 32px; right: 32px; z-index: -1; font-family: var(--serif); font-size: 9rem; line-height: 1; color: rgba(200,164,92,.18); }
+  .arrow { margin-top: 24px; color: var(--accent); }
+
+  /* ============ STEPS ============ */
+  .steps { margin-top: 48px; display: grid; gap: 1px; background: var(--border); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  @media (min-width: 768px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+  .step { background: var(--bg); padding: 32px 28px 32px 0; }
+  @media (min-width: 768px) { .step + .step { padding-left: 28px; } }
+  .step .n { font-family: var(--serif); font-size: 3rem; color: var(--accent); line-height: 1; }
+  .step h3 { margin-top: 16px; font-size: 1.4rem; }
+  .step p { margin-top: 8px; color: var(--muted-fg); }
+
+  /* ============ WAITLIST ============ */
+  .waitlist { background: var(--muted); }
+  .wl-grid { display: grid; gap: 48px; }
+  @media (min-width: 1024px) { .wl-grid { grid-template-columns: 5fr 7fr; } }
+  form { display: grid; gap: 16px; }
+  @media (min-width: 640px) { form .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; } }
+  form .pair { display: grid; gap: 16px; }
+  label { display: grid; gap: 6px; font-size: .8rem; font-weight: 600; color: var(--fg); }
+  input, select { width: 100%; font: inherit; font-size: 1rem; font-weight: 400; padding: 13px 14px; border: 1px solid var(--border); border-radius: 10px; background: #fff; color: var(--fg); }
+  input:focus, select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(27,51,80,.12); }
+  .consent { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; color: var(--muted-fg); font-size: .82rem; }
+  .consent input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: var(--primary); }
+  .btn-dark { background: var(--deep); color: var(--deep-fg); justify-self: start; padding: 14px 28px; }
+  .btn-dark:hover { filter: brightness(1.25); }
+  .btn-dark[disabled] { opacity: .6; cursor: progress; }
+  .msg { font-size: .9rem; min-height: 1.4em; }
+  .msg.err { color: var(--danger); }
+  .done { display: none; background: var(--bg); border: 1px solid var(--border); padding: 32px; }
+  .done h3 { font-size: 1.8rem; }
+  .done p { margin-top: 10px; color: var(--muted-fg); }
+  .perks { margin: 28px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; color: var(--muted-fg); }
+  .perks li { display: flex; gap: 12px; }
+  .perks li::before { content: "✓"; color: var(--petrol); font-weight: 700; }
+
+  /* ============ FAQ ============ */
+  .faq { margin-top: 40px; border-top: 1px solid var(--border); }
+  details { border-bottom: 1px solid var(--border); }
+  summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 16px; padding: 22px 0; font-family: var(--serif); font-size: 1.3rem; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--accent); font-size: 1.5rem; line-height: 1; transition: transform .2s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { padding: 0 0 22px; color: var(--muted-fg); max-width: 46rem; }
+
+  /* ============ CLOSING / FOOTER ============ */
+  .closing { background: var(--deep); color: var(--deep-fg); text-align: center; }
+  .closing h2 { font-size: 2.4rem; line-height: 1.1; max-width: 46rem; margin: 20px auto 0; }
+  @media (min-width: 768px) { .closing h2 { font-size: 3.4rem; } }
+  .closing p.t { margin: 20px auto 0; max-width: 34rem; color: rgba(244,241,234,.75); }
+  .closing .hero-ctas { justify-content: center; }
+  footer { background: var(--deep); color: rgba(244,241,234,.55); border-top: 1px solid rgba(244,241,234,.1); font-size: .85rem; }
+  footer .container-x { display: flex; flex-wrap: wrap; gap: 12px 32px; justify-content: space-between; padding-top: 28px; padding-bottom: 28px; }
+  footer a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="container-x">
+    <a href="#" class="brand" aria-label="JURIDIA, inicio">JURI<span>DIA</span></a>
+    <nav class="nav-links" aria-label="Secciones">
+      <a href="#funciones">Funciones</a>
+      <a href="#ia">IA con fuentes</a>
+      <a href="#como">Cómo funciona</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+    <a href="#lista" class="btn btn-accent">Lista de espera</a>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="container-x hero-grid">
+    <div class="animate-rise">
+      <p class="eyebrow text-accent">JURIDIA — LegalTech &amp; CRM para despachos</p>
+      <h1>Todo tu despacho en un solo lugar. Con una IA que <em>cita sus fuentes</em>.</h1>
+      <p class="hero-sub">Expedientes, plazos, clientes, escritos, jurisprudencia del TSJ y facturación, con un copiloto jurídico que trabaja sobre tus propios documentos. Hecho por abogados, para la práctica real.</p>
+      <div class="hero-ctas">
+        <a href="#lista" class="btn btn-accent">Unirme a la lista de espera</a>
+        <a href="#funciones" class="btn btn-ghost">Ver funciones</a>
+      </div>
+      <p class="hero-note">Acceso anticipado por invitación · Plazas limitadas para la beta</p>
+    </div>
+
+    <div class="mock-wrap animate-rise delay" aria-hidden="true">
+      <div class="mock">
+        <div class="mock-bar"><i></i><i></i><i></i><span class="url">app.juridia · Panel</span></div>
+        <div class="mock-body">
+          <div class="mock-side">
+            <b>JURI<span>DIA</span></b>
+            <div class="on">Panel</div>
+            <div>Copiloto IA</div>
+            <div>Expedientes</div>
+            <div>Contratos</div>
+            <div>Flujo de trabajo</div>
+            <div>Agenda</div>
+            <div>Clientes</div>
+            <div>Facturación</div>
+            <div>Biblioteca</div>
+          </div>
+          <div class="mock-main">
+            <div class="mock-h">Buenos días</div>
+            <div class="mock-kpis">
+              <div class="kpi"><small>Expedientes activos</small><strong>48</strong></div>
+              <div class="kpi"><small>Plazos esta semana</small><strong>6</strong></div>
+              <div class="kpi"><small>Tareas pendientes</small><strong>13</strong></div>
+            </div>
+            <div class="card">
+              <div class="card-t">Plazos que vencen</div>
+              <div class="row"><span class="dot" style="background:var(--danger)"></span><span class="grow">Contestación de demanda · Exp. 2026-041</span><span class="date">mañana</span></div>
+              <div class="row"><span class="dot" style="background:var(--warn)"></span><span class="grow">Promoción de pruebas · Exp. 2026-033</span><span class="date">jueves</span></div>
+              <div class="row"><span class="dot" style="background:var(--ok)"></span><span class="grow">Renovación de contrato de arrendamiento</span><span class="date">28 nov</span></div>
+            </div>
+            <div class="card chat">
+              <div class="card-t">Copiloto IA</div>
+              <div class="bubble me">¿Qué plazo tenemos para contestar?</div>
+              <div class="bubble ai">20 días de despacho desde la citación.<br><span class="src">Fuente: Auto de admisión, p. 2</span> <span class="src inf">Inferencia: vence el 03/12</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mock-float"><strong>Plazo detectado</strong><br>«…dentro de los veinte (20) días de despacho siguientes…» — ¿Añadir a la agenda?</div>
+    </div>
+  </div>
+  <div class="pillars">
+    <p class="container-x eyebrow">Expedientes · Plazos · Copiloto IA · Jurisprudencia TSJ · Contratos · Facturación</p>
+  </div>
+</section>
+
+<!-- PRESENTACIÓN -->
+<section class="container-x section intro">
+  <p class="eyebrow text-petrol">Por qué JURIDIA</p>
+  <div>
+    <h2>Nació dentro de un despacho, no en una sala de reuniones de software.</h2>
+    <div class="two-col">
+      <p>JURIDIA lo diseñó un abogado que necesitaba dejar de saltar entre carpetas, hojas de cálculo, correos y chats para saber en qué estaba cada caso. El resultado es un único espacio donde viven los expedientes, los clientes, los colegas, la agenda y el dinero.</p>
+      <p>La inteligencia artificial está integrada donde aporta: leer documentos, detectar plazos, analizar demandas y contratos, redactar borradores e investigar en la biblioteca y la jurisprudencia. Siempre como apoyo: la decisión final es del abogado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FUNCIONES -->
+<section id="funciones" class="bg-muted section">
+  <div class="container-x">
+    <div class="head-row">
+      <div>
+        <h2 class="h2">Todo lo que el despacho necesita</h2>
+        <p class="text-muted" style="margin-top:16px;max-width:36rem">Doce módulos que hablan entre sí: lo que ocurre en un expediente aparece en la agenda, en las tareas del equipo y en la facturación.</p>
+      </div>
+      <a href="#lista" class="link">Quiero probarlo →</a>
+    </div>
+    <div class="features">
+      <article class="feat"><span class="num">01</span><h3>Expedientes y clientes</h3><p>Ficha completa, documentos, historial, colaboración con colegas y fichas de clientes al estilo de tus contactos.</p></article>
+      <article class="feat"><span class="num">02</span><h3>Plazos desde documentos</h3><p>Sube un auto o una notificación: la IA propone el plazo con la frase literal y la fecha de inicio. Tú verificas y aceptas.</p></article>
+      <article class="feat"><span class="num">03</span><h3>Copiloto IA con modos</h3><p>Analizar expediente, investigar, redactar, revisar contratos, estrategia y riesgos o preparar una reunión.</p></article>
+      <article class="feat"><span class="num">04</span><h3>Análisis de demandas</h3><p>Partes, pretensiones, hechos con cita verificada, pruebas, plazo para actuar, puntos débiles y defensas posibles.</p></article>
+      <article class="feat"><span class="num">05</span><h3>Contratos y riesgos</h3><p>Resumen ejecutivo, obligaciones, fechas y cláusulas de riesgo en semáforo, con propuestas para reducirlas.</p></article>
+      <article class="feat"><span class="num">06</span><h3>Escritos y documentos</h3><p>Cartas, requerimientos, demandas, contestaciones, NDA o actas con los datos del expediente; marca lo que falta completar.</p></article>
+      <article class="feat"><span class="num">07</span><h3>Biblioteca y TSJ</h3><p>Leyes vigentes y sentencias del Tribunal Supremo de Justicia con búsqueda de texto completo y artículos exactos.</p></article>
+      <article class="feat"><span class="num">08</span><h3>Flujo de trabajo</h3><p>Tablero de tareas, plantillas de flujos y traspasos con informe y archivos adjuntos para quien continúa el trabajo.</p></article>
+      <article class="feat"><span class="num">09</span><h3>Agenda y avisos</h3><p>Audiencias, reuniones con enlace de videollamada, campana de notificaciones y feed de actividad del equipo.</p></article>
+      <article class="feat"><span class="num">10</span><h3>Facturación</h3><p>Presupuestos y facturas vinculados al cliente y al expediente, sin hojas de cálculo aparte.</p></article>
+      <article class="feat"><span class="num">11</span><h3>Memoria del despacho</h3><p>Modelos, dictámenes y estrategias propias. Pregunta «¿cómo tratamos casos similares?» y recupera lo aprendido.</p></article>
+      <article class="feat"><span class="num">12</span><h3>Equipo y roles</h3><p>Cuentas por abogado, roles, autoría de cada actuación y una revisión diaria de lo que requiere atención.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPIO IA -->
+<section id="ia" class="container-x section principle">
+  <div>
+    <p class="eyebrow text-petrol">Una IA en la que se puede confiar</p>
+    <h2 class="h2" style="margin-top:24px">Separa lo que dice el documento de lo que deduce la máquina.</h2>
+    <p class="text-muted" style="margin-top:24px;max-width:34rem">En derecho, una cita inventada es un error grave. Por eso cada respuesta de JURIDIA distingue la fuente literal de la inferencia, y un auditor revisa automáticamente lo que produce el copiloto.</p>
+    <ul class="checks">
+      <li>Respuestas con la cita y el documento de origen.</li>
+      <li>Nada se ejecuta solo: la IA propone, el abogado aprueba.</li>
+      <li>Los resultados se guardan para no pagar dos veces por el mismo análisis.</li>
+      <li>Lee PDF, Word, fotos y documentos escaneados.</li>
+    </ul>
+  </div>
+  <div class="compare">
+    <div>
+      <span class="tag tag-ok">Lo que dice el documento</span>
+      <blockquote>«El demandado deberá dar contestación dentro de los veinte días de despacho siguientes a su citación.»</blockquote>
+      <cite>Auto de admisión · Exp. 2026-041 · página 2</cite>
+    </div>
+    <div>
+      <span class="tag tag-warn">Lo que deduce la IA</span>
+      <blockquote>Contando los días de despacho del tribunal, el plazo vencería el 3 de diciembre.</blockquote>
+      <cite>Inferencia — verifícala con el calendario del tribunal antes de aceptarla</cite>
+    </div>
+  </div>
+</section>
+
+<!-- SPLIT -->
+<section class="split">
+  <a href="#lista" class="panel">
+    <div class="bg bg-a"></div>
+    <span class="glyph" aria-hidden="true">§</span>
+    <p class="eyebrow text-accent">Copiloto IA</p>
+    <h2>Un asociado incansable que ya ha leído todo el expediente.</h2>
+    <p class="t">Resumen, cronología, contradicciones entre documentos, documentos faltantes y próximos pasos, en una conversación.</p>
+    <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+  </a>
+  <a href="#lista" class="panel">
+    <div class="bg bg-b"></div>
+    <span class="glyph" aria-hidden="true">¶</span>
+    <p class="eyebrow text-accent">Jurisprudencia TSJ</p>
+    <h2>Sentencias reales del Tribunal Supremo, no inventadas.</h2>
+    <p class="t">El copiloto solo cita jurisprudencia que está en tu biblioteca, con búsqueda de texto completo y orden por relevancia.</p>
+    <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+  </a>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section id="como" class="container-x section">
+  <p class="eyebrow text-petrol">Cómo funciona</p>
+  <h2 class="h2" style="margin-top:24px;max-width:40rem">De la recepción del caso al cobro, sin cambiar de herramienta.</h2>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h3>Recibe el caso</h3><p>Escribe un mensaje o adjunta la demanda y las pruebas. JURIDIA clasifica el caso y prepara la ficha del expediente.</p></div>
+    <div class="step"><div class="n">2</div><h3>Trabaja con el copiloto</h3><p>Analiza, investiga y redacta sobre los documentos del caso. Los plazos detectados pasan a la agenda cuando los apruebas.</p></div>
+    <div class="step"><div class="n">3</div><h3>Coordina y factura</h3><p>Reparte tareas al equipo con traspasos documentados y emite presupuestos y facturas desde el mismo expediente.</p></div>
+  </div>
+</section>
+
+<!-- LISTA DE ESPERA -->
+<section id="lista" class="waitlist section">
+  <div class="container-x wl-grid">
+    <div>
+      <p class="eyebrow text-petrol">Acceso anticipado</p>
+      <h2 class="h2" style="margin-top:24px">Únete a la lista de espera.</h2>
+      <p class="text-muted" style="margin-top:20px">Estamos abriendo la beta a un grupo reducido de despachos. Déjanos tus datos y te escribiremos cuando haya una plaza para ti.</p>
+      <ul class="perks">
+        <li>Prioridad de acceso a la beta</li>
+        <li>Acompañamiento en la puesta en marcha</li>
+        <li>Condiciones preferentes para los primeros despachos</li>
+      </ul>
+    </div>
+    <div>
+      <form id="wl" novalidate>
+        <div class="pair">
+          <label>Nombre y apellido<input name="nombre" autocomplete="name" required /></label>
+          <label>Correo profesional<input name="email" type="email" autocomplete="email" required /></label>
+        </div>
+        <div class="pair">
+          <label>Despacho o empresa<input name="despacho" autocomplete="organization" /></label>
+          <label>Tamaño del equipo
+            <select name="tamano">
+              <option value="">Selecciona</option>
+              <option>Ejerzo solo/a</option>
+              <option>2 a 5 abogados</option>
+              <option>6 a 20 abogados</option>
+              <option>Más de 20</option>
+              <option>Departamento legal de empresa</option>
+            </select>
+          </label>
+        </div>
+        <label>País<input name="pais" autocomplete="country-name" placeholder="Venezuela" /></label>
+        <label class="consent"><input type="checkbox" name="consentimiento" required /> Acepto que JURIDIA me contacte por correo sobre el acceso a la beta. Puedo darme de baja en cualquier momento.</label>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
+        <button class="btn btn-dark" type="submit">Reservar mi plaza</button>
+        <p class="msg" id="wl-msg" role="status" aria-live="polite"></p>
+      </form>
+      <div class="done" id="wl-done" role="status">
+        <p class="eyebrow text-petrol">Listo</p>
+        <h3 style="margin-top:12px">Gracias, estás en la lista.</h3>
+        <p>Te escribiremos en cuanto se abra una plaza para tu despacho.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="container-x section">
+  <h2 class="h2">Preguntas frecuentes</h2>
+  <div class="faq">
+    <details><summary>¿Para quién es JURIDIA?</summary><p>Para abogados independientes, despachos y departamentos legales que quieren centralizar su trabajo y aprovechar la IA sin perder control. Está pensado especialmente para la práctica en Venezuela, con su legislación y la jurisprudencia del TSJ.</p></details>
+    <details><summary>¿La IA puede inventar leyes o sentencias?</summary><p>JURIDIA está construido para evitarlo: el copiloto responde sobre tus documentos y tu biblioteca, indica la fuente de cada afirmación y marca como inferencia lo que no está escrito. Aun así, toda respuesta debe ser revisada por un abogado.</p></details>
+    <details><summary>¿Qué pasa con la confidencialidad de mis expedientes?</summary><p>Cada usuario tiene su cuenta y su rol, y cada actuación queda registrada con su autor. Durante la beta te recomendamos trabajar con datos de prueba o anonimizados; te explicaremos en detalle dónde y cómo se guarda la información antes de dar el paso a datos reales.</p></details>
+    <details><summary>¿Cuánto costará?</summary><p>Los precios se anunciarán al cierre de la beta. Los despachos de la lista de espera tendrán condiciones preferentes.</p></details>
+    <details><summary>¿Necesito instalar algo?</summary><p>No. JURIDIA funciona desde el navegador, en el ordenador o en el móvil.</p></details>
+  </div>
+</section>
+
+<!-- CIERRE -->
+<section class="closing section">
+  <div class="container-x">
+    <p class="eyebrow text-accent">JURIDIA · LegalTech &amp; CRM</p>
+    <h2>Menos tiempo buscando papeles. Más tiempo ejerciendo el derecho.</h2>
+    <p class="t">Reserva tu plaza en la beta y sé de los primeros despachos en trabajar con JURIDIA.</p>
+    <div class="hero-ctas"><a href="#lista" class="btn btn-accent">Unirme a la lista de espera</a></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container-x">
+    <span>© <span id="y"></span> JURIDIA · Un producto de Herrera y Asociados — Legal &amp; Business Consulting</span>
+    <span><a href="#funciones">Funciones</a> · <a href="#faq">Preguntas</a> · <a href="#lista">Lista de espera</a></span>
+  </div>
+</footer>
+
+<script>
+  /* ============ CONFIGURACIÓN ============
+     endpoint: URL que recibe el formulario (p. ej. Formspree: "https://formspree.io/f/XXXXXXX",
+               Google Apps Script, Supabase Edge Function...). Recibe un POST JSON.
+     Si se deja vacío, el formulario abre el correo del visitante con los datos rellenados. */
+  const CONFIG = {
+    endpoint: "",
+    emailDestino: "4ntonioherrera@gmail.com",
+  };
+
+  document.getElementById("y").textContent = new Date().getFullYear();
+
+  const form = document.getElementById("wl");
+  const msg = document.getElementById("wl-msg");
+  const done = document.getElementById("wl-done");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    msg.className = "msg"; msg.textContent = "";
+    const d = Object.fromEntries(new FormData(form).entries());
+    if (d._gotcha) return;
+    if (!d.nombre || !d.nombre.trim()) return fail("Escribe tu nombre.", "nombre");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email || "")) return fail("Revisa tu correo electrónico.", "email");
+    if (!d.consentimiento) return fail("Necesitamos tu permiso para escribirte.", "consentimiento");
+    delete d._gotcha;
+
+    if (!CONFIG.endpoint) {
+      const body = Object.entries(d).map(([k, v]) => `${k}: ${v}`).join("\n");
+      location.href = `mailto:${CONFIG.emailDestino}?subject=${encodeURIComponent("Lista de espera JURIDIA")}&body=${encodeURIComponent(body)}`;
+      return ok();
+    }
+
+    const btn = form.querySelector("button");
+    btn.disabled = true; btn.textContent = "Enviando…";
+    try {
+      const r = await fetch(CONFIG.endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ ...d, origen: "landing-juridia", fecha: new Date().toISOString() }),
+      });
+      if (!r.ok) throw new Error(r.status);
+      ok();
+    } catch {
+      fail("No pudimos enviar tus datos. Inténtalo de nuevo en unos minutos.");
+    } finally {
+      btn.disabled = false; btn.textContent = "Reservar mi plaza";
+    }
+  });
+
+  function fail(t, field) {
+    msg.className = "msg err"; msg.textContent = t;
+    if (field) form.elements[field]?.focus();
+  }
+  function ok() { form.style.display = "none"; done.style.display = "block"; done.focus?.(); }
+</script>
+</body>
+</html>
